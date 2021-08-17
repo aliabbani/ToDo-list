@@ -37,12 +37,6 @@ body {
   padding: 0 1vw 0 0;
 }
 
-.left-items {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-}
-
 .list-items-text {
   padding-left: 1vw;
 }

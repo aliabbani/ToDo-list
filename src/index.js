@@ -1,7 +1,7 @@
 import _ from "lodash";
 import "./style.css";
 
-let Tasks = [
+let tasks = [
   {
     'description': 'Adding a new item',
     'completed': false,
@@ -35,18 +35,24 @@ for (let i = 0; i < tasks.length; i++) {
   const liTextAndIcons = document.createElement('li');
   const squareSpan = document.createElement('span')
   const squareIcon = document.createElement('i');
+  const listText = document.createElement('p');
   const threeDotIcon = document.createElement('i');
 
   listItems.appendChild(leftItems);
   listItems.appendChild(threeDotIcon);
   leftItems.appendChild(liTextAndIcons);
   liTextAndIcons.appendChild(squareSpan);
+  liTextAndIcons.appendChild(listText);
   squareSpan.appendChild(squareIcon);
 
   listItems.className = 'list-items';
-  leftItems.className = 'left-items';
+  leftItems.className = 'fa-ul left-items';
   liTextAndIcons.className = 'li-text-and-icons';
-  squareSpan.className = 'square-span';
-  squareIcon.className = 'square-icon';
-  threeDotIcon.className = 'three-dot-icon';
+  squareSpan.className = 'fa-li square-span';
+  squareIcon.className = 'far fa-square square-icon';
+  listText.className = 'list-text';
+  threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
+
+  document.querySelector('.box').appendChild(listItems);
+  listText.innerText = tasks[i].description;
 }
