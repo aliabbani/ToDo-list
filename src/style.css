@@ -1,7 +1,63 @@
 body {
-    background-color: bisque;
+  background-color: darkgrey;
 }
 
-.hello {
-    color: black;
+.to-do-list {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  background-color: white;
+}
+
+.demo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid silver;
+  align-items: baseline;
+  padding: 0 1vw;
+}
+
+.add-list-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid silver;
+  align-items: baseline;
+  padding: 0 1vw;
+  color: silver;
+}
+
+.list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid silver;
+  padding: 0 1vw 0 0;
+}
+
+.left-items {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.list-items-text {
+  padding-left: 1vw;
+}
+
+.complete {
+  background-color: rgb(233, 233, 233);
+  text-align: center;
+  padding: 1.5vw 0;
+}
+
+.complete a {
+  color: silver;
+}
+
+.complete-text:hover {
+  text-decoration: underline;
+  color: black;
 }
