@@ -11,7 +11,7 @@ const tasks = [
   {
     description: 'Removing a selected item.',
     completed: false,
-    index: 1,
+    index: 7,
   },
   {
     description: 'Reordering a selected item (as drag-and-drop).',
@@ -29,6 +29,19 @@ const tasks = [
     index: 4,
   },
 ];
+
+const orderTasks = () => {
+  let max = tasks[0].index;
+  for (let j = 1; j < tasks.length; j += 1) {
+    if (tasks[j].index > max) {
+      max = tasks[j].index;
+    } else {
+      const ali = tasks[j];
+      tasks[j] = tasks[j - 1];
+      tasks[j - 1] = ali;
+    }
+  }
+};
 
 for (let i = 0; i < tasks.length; i += 1) {
   const listItems = document.createElement('div');
@@ -56,4 +69,5 @@ for (let i = 0; i < tasks.length; i += 1) {
 
   document.querySelector('.box').appendChild(listItems);
   listText.innerText = tasks[i].description;
+  orderTasks();
 }

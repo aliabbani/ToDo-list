@@ -24,8 +24,14 @@ body {
   justify-content: space-between;
   border-bottom: 1px solid silver;
   align-items: baseline;
-  padding: 0 1vw;
+  padding: 0.5vh 1vw;
   color: silver;
+}
+
+.input-add {
+  border: none;
+  outline: none;
+  padding: 2vh 0;
 }
 
 .list-items {
