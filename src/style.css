@@ -29,11 +29,10 @@ body {
   padding-right: 2vw;
 }
 
-
 .to-do-list {
   display: flex;
   flex-direction: column;
-  width: 50vw;
+  margin: 8vh 5vw;
   background-color: white;
 }
 
@@ -46,6 +45,10 @@ body {
   padding: 0 1vw;
 }
 
+.demo h3 {
+  color: #3e69e6;
+}
+
 .add-list-text {
   display: flex;
   flex-direction: row;
@@ -53,7 +56,6 @@ body {
   border-bottom: 1px solid silver;
   align-items: baseline;
   padding: 0.5vh 1vw;
-  color: silver;
 }
 
 .input-add {
@@ -76,12 +78,12 @@ body {
 }
 
 .complete {
-  background-color: rgb(233, 233, 233);
+  background-color: #e0dfdf;
   text-align: center;
-  padding: 1.5vw 0;
+  padding: 3vh 0;
 }
 
-.complete a {
+.complete-text {
   color: silver;
 }
 
