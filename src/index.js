@@ -9,7 +9,7 @@ const tasks = [
     index: 0,
   },
   {
-    description: 'Removing a selected item.',
+    description: 'Removing a selected item',
     completed: false,
     index: 7,
   },
