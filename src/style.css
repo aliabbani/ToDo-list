@@ -3,6 +3,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 .nav-bar {
   background-color: #0078d7;
   display: flex;
@@ -90,4 +94,8 @@ body {
 .complete-text:hover {
   text-decoration: underline;
   color: black;
+}
+
+.fa-check {
+  color: #3e69e6;
 }

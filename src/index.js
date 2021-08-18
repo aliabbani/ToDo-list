@@ -1,12 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import _ from 'lodash';
 import './style.css';
+import completedTask from './complete.js';
+// console.log(completedTask);
 
 const tasks = [
   {
     description: 'Adding a new item',
     completed: false,
-    index: 0,
+    index: 1,
   },
   {
     description: 'Removing a selected item',
@@ -70,4 +72,25 @@ for (let i = 0; i < tasks.length; i += 1) {
   document.querySelector('.box').appendChild(listItems);
   listText.innerText = tasks[i].description;
   orderTasks();
+
+  // start complete js file //
+  const checkIcon = document.createElement('i');
+  squareSpan.appendChild(checkIcon);
+  checkIcon.className = 'fas fa-check hidden';
+
+  squareIcon.addEventListener('click', () => {
+    squareIcon.style.display = 'none';
+    listText.style.textDecoration = 'line-through';
+    listText.style.color = 'gray';
+    checkIcon.style.display = 'flex';
+    tasks.completed = true;
+    // console.log(tasks.completed);
+  });
+  checkIcon.addEventListener('click', () => {
+    checkIcon.style.display = 'none';
+    listText.style.textDecoration = 'none';
+    listText.style.color = 'black';
+    squareIcon.style.display = 'block';
+    tasks.completed = false;
+  });
 }
