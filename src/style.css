@@ -38,6 +38,7 @@ body {
   flex-direction: column;
   margin: 8vh 5vw;
   background-color: white;
+  padding: 0 3vw;
 }
 
 .demo {

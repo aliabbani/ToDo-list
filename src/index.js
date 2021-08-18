@@ -45,52 +45,88 @@ const orderTasks = () => {
   }
 };
 
-for (let i = 0; i < tasks.length; i += 1) {
-  const listItems = document.createElement('div');
-  const leftItems = document.createElement('ul');
-  const liTextAndIcons = document.createElement('li');
-  const squareSpan = document.createElement('span');
-  const squareIcon = document.createElement('i');
-  const listText = document.createElement('p');
-  const threeDotIcon = document.createElement('i');
+const saveData = () => {
+  const stringifyTasks = JSON.stringify(tasks);
+  localStorage.setItem('tasks', stringifyTasks);
+};
+saveData();
 
-  listItems.appendChild(leftItems);
-  listItems.appendChild(threeDotIcon);
-  leftItems.appendChild(liTextAndIcons);
-  liTextAndIcons.appendChild(squareSpan);
-  liTextAndIcons.appendChild(listText);
-  squareSpan.appendChild(squareIcon);
+const generateTasks = () => {
+  for (let i = 0; i < tasks.length; i += 1) {
+    const listItems = document.createElement('div');
+    const leftItems = document.createElement('ul');
+    const liTextAndIcons = document.createElement('li');
+    const squareSpan = document.createElement('span');
+    const squareIcon = document.createElement('i');
+    // squareIcon.addEventListener('click', () => {
+    //   tasks[i].completed = !tasks[i].completed;
+    //   return true;
+    // });
+    const checkIcon = document.createElement('i');
+    // checkIcon.addEventListener('click', () => {
+    //   tasks[i].completed = !tasks[i].completed;
+    //   console.log(tasks[i].completed);
+    // });
+    const listText = document.createElement('p');
+    const threeDotIcon = document.createElement('i');
 
-  listItems.className = 'list-items';
-  leftItems.className = 'fa-ul left-items';
-  liTextAndIcons.className = 'li-text-and-icons';
-  squareSpan.className = 'fa-li square-span';
-  squareIcon.className = 'far fa-square square-icon';
-  listText.className = 'list-text';
-  threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
+    listItems.appendChild(leftItems);
+    listItems.appendChild(threeDotIcon);
+    leftItems.appendChild(liTextAndIcons);
+    liTextAndIcons.appendChild(squareSpan);
+    liTextAndIcons.appendChild(listText);
+    squareSpan.appendChild(squareIcon);
+    squareSpan.appendChild(checkIcon);
 
-  document.querySelector('.box').appendChild(listItems);
-  listText.innerText = tasks[i].description;
-  orderTasks();
+    listItems.className = 'list-items';
+    leftItems.className = 'fa-ul left-items';
+    liTextAndIcons.className = 'li-text-and-icons';
+    squareSpan.className = 'fa-li square-span';
+    squareIcon.className = 'far fa-square square-icon';
+    checkIcon.className = 'fas fa-check hidden';
+    listText.className = 'list-text';
+    threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
 
-  // start complete js file //
-  const checkIcon = document.createElement('i');
-  squareSpan.appendChild(checkIcon);
-  checkIcon.className = 'fas fa-check hidden';
+    document.querySelector('.box').appendChild(listItems);
+    listText.innerText = tasks[i].description;
+    orderTasks();
 
-  squareIcon.addEventListener('click', () => {
-    squareIcon.style.display = 'none';
-    listText.style.textDecoration = 'line-through';
-    listText.style.color = 'gray';
-    checkIcon.style.display = 'flex';
-    tasks.completed = true;
-    // console.log(tasks.completed);
-  });
-  checkIcon.addEventListener('click', () => {
-    checkIcon.style.display = 'none';
-    listText.style.textDecoration = 'none';
-    listText.style.color = 'black';
-    squareIcon.style.display = 'block';
-    tasks.completed = false;
-  });
-}
+    // start complete js file //
+
+    squareIcon.addEventListener('click', () => {
+      tasks[i].completed = !tasks[i].completed;
+      squareIcon.style.display = 'none';
+      listText.style.textDecoration = 'line-through';
+      listText.style.color = 'gray';
+      checkIcon.style.display = 'flex';
+      saveData();
+      // getData();
+    });
+
+    checkIcon.addEventListener('click', () => {
+      tasks[i].completed = !tasks[i].completed;
+      checkIcon.style.display = 'none';
+      listText.style.textDecoration = 'none';
+      listText.style.color = 'black';
+      squareIcon.style.display = 'block';
+      saveData();
+      // getData();
+    });
+  }
+};
+generateTasks();
+completedTask();
+
+const getData = () => {
+  if (localStorage.getItem('tasks') !== null) {
+    // tasks[i].completed = !tasks[i].completed;
+    const retrievedTasks = localStorage.getItem('tasks');
+    // const convertedTasks =
+    JSON.parse(retrievedTasks);
+    // tasks = convertedTasks;
+    generateTasks();
+  } else {
+    generateTasks();
+  }
+};
+getData();
