@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4f02d055e5.js" crossorigin="anonymous"></script>
+    <title>ToDo List</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <h1 class="nav-left">To Do</h1>
+        <ul class="nav-right">
+            <li><a href="/">My Day</a></li>
+            <li><a href="/">Important</a></li>
+            <li><a href="/">planned</a></li>
+          </ul> 
+    </nav>
+    <div class="to-do-list">
+        <div class="demo">
+                <h3>Today's To Do</h3>
+                <i class="fas fa-sync"></i>
+        </div>
+        <div class="add-list-text">
+            <label for="tasks-text">
+                <input type="text" name="tasks-text" id="tasks-text" class="input-add"  placeholder="Add to your list...">
+              </label>   
+              <i class="fas fa-greater-than add-here"></i> 
+        </div>
+        
+        <div class="box"></div>
+        <!-- <div class="list-items">
+            <ul class="fa-ul left-items">
+                <li class="li-text-and-icons">
+                    <span class="fa-li square-span">
+                        <i class="far fa-square square-icon"></i>
+                    </span>
+                    List icons can
+                </li>
+            </ul>
+            <i class="fas fa-ellipsis-v three-dot-icon"></i>
+        </div> -->
+        <div class="complete">
+            <a href="/" class="complete-text">Clear all completed</a>
+        </div>
+    </div>
+</body>
+</html>
+
