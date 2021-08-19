@@ -8,7 +8,6 @@ function updateCompleted(event, task, listText) {
     listText.classList.remove('list-text');
     // console.log(event.checked);
   }
-  // tasks[i].completed = !tasks[i].completed;
 }
 
 export default updateCompleted;
