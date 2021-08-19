@@ -95,7 +95,6 @@ const generateTasks = () => {
       listText.classList.remove('list-text');
       squareIcon.checked = false;
     }
-   
     squareIcon.addEventListener('change', (event) => {
       updateCompleted(event, task, listText);
       localStorage.setItem('tasks', JSON.stringify(tasks));
