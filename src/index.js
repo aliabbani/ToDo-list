@@ -4,33 +4,7 @@ import './style.css';
 import updateCompleted from './complete.js';
 // console.log(completedTask);
 
-let tasks = [
-  {
-    description: 'Adding a new item',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Removing a selected item',
-    completed: false,
-    index: 7,
-  },
-  {
-    description: 'Reordering a selected item (as drag-and-drop).',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Marking a selected item as complete.',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Removing all items marked as complete at once.',
-    completed: false,
-    index: 4,
-  },
-];
+let tasks = [];
 
 if (localStorage.getItem('tasks') === null) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -58,32 +32,27 @@ const orderTasks = () => {
 
 const generateTasks = () => {
   tasks.forEach((task) => {
-    const listItems = document.createElement('div');
-    const leftItems = document.createElement('ul');
-    const liTextAndIcons = document.createElement('li');
-    const squareSpan = document.createElement('span');
+    const div1 = document.createElement('div');
+    const div2 = document.createElement('div');
     const squareIcon = document.createElement('input');
     squareIcon.type = 'checkbox';
     // squareIcon.checked = tasks[i].completed;
     const listText = document.createElement('p');
+    listText.type = 'text';
     const threeDotIcon = document.createElement('i');
 
-    listItems.appendChild(leftItems);
-    listItems.appendChild(threeDotIcon);
-    leftItems.appendChild(liTextAndIcons);
-    liTextAndIcons.appendChild(squareSpan);
-    liTextAndIcons.appendChild(listText);
-    squareSpan.appendChild(squareIcon);
+    div1.appendChild(div2);
+    div1.appendChild(threeDotIcon);
+    div2.appendChild(squareIcon);
+    div2.appendChild(listText);
 
-    listItems.className = 'list-items';
-    leftItems.className = 'fa-ul left-items';
-    liTextAndIcons.className = 'li-text-and-icons';
-    squareSpan.className = 'fa-li square-span';
-    // listText.className = 'list-text';
+    div1.className = 'list-items';
+    div2.className = 'left-items';
+    listText.className = 'list-text1';
     squareIcon.className = 'checkbox';
     threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
 
-    document.querySelector('.box').appendChild(listItems);
+    document.querySelector('.box').appendChild(div1);
     listText.innerText = task.description;
 
     // start complete js file //
@@ -103,3 +72,24 @@ const generateTasks = () => {
 };
 orderTasks();
 generateTasks();
+
+// start addRemove js
+
+const addNewTask = (tasks) => {
+  const inputAdd = document.querySelector('#tasks-text').value;
+  const listText = document.createElement('p');
+  // listText.innerHTML = inputAdd.value;
+  const addT = {
+    inputAdd,
+  };
+  tasks.push(addT);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  generateTasks();
+};
+
+const addIcon = document.querySelector('.add-here');
+addIcon.addEventListener('click', () => {
+  addNewTask(tasks);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  generateTasks();
+});

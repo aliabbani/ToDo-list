@@ -69,13 +69,15 @@ body {
   padding: 2vh 0;
 }
 
+/****************************************************************************************** */
+
 .list-items {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
   border-bottom: 1px solid silver;
-  padding: 0 1vw 0 0;
+  padding: 1vh 2vw 1vh 0;
 }
 
 .list-items-text {
@@ -106,7 +108,18 @@ body {
   color: gray;
 }
 
-/* .list-text2 {
-  text-decoration: none;
-  color: black;
-} */
+.list-text1 {
+  border: none;
+  outline: none;
+  padding: 2vh 0;
+  font-size: 15px;
+}
+
+.three-dot-icon,
+.fa-sync {
+  color: silver;
+}
+
+.add-here {
+  color: gray;
+}
