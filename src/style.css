@@ -3,6 +3,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 .nav-bar {
   background-color: #0078d7;
   display: flex;
@@ -34,6 +38,7 @@ body {
   flex-direction: column;
   margin: 8vh 5vw;
   background-color: white;
+  padding: 0 3vw;
 }
 
 .demo {
@@ -91,3 +96,17 @@ body {
   text-decoration: underline;
   color: black;
 }
+
+.fa-check {
+  color: #3e69e6;
+}
+
+.list-text {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* .list-text2 {
+  text-decoration: none;
+  color: black;
+} */
