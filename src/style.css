@@ -100,3 +100,13 @@ body {
 .fa-check {
   color: #3e69e6;
 }
+
+.list-text {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* .list-text2 {
+  text-decoration: none;
+  color: black;
+} */

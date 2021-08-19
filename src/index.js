@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import _ from 'lodash';
 import './style.css';
-import completedTask from './complete.js';
+import updateCompleted from './complete.js';
 // console.log(completedTask);
 
-const tasks = [
+let tasks = [
   {
     description: 'Adding a new item',
     completed: false,
@@ -32,6 +32,17 @@ const tasks = [
   },
 ];
 
+if (localStorage.getItem('tasks') === null) {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+const getData = () => {
+  if (localStorage.getItem('tasks') !== null) {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+};
+getData();
+
 const orderTasks = () => {
   let max = tasks[0].index;
   for (let j = 1; j < tasks.length; j += 1) {
@@ -45,28 +56,15 @@ const orderTasks = () => {
   }
 };
 
-const saveData = () => {
-  const stringifyTasks = JSON.stringify(tasks);
-  localStorage.setItem('tasks', stringifyTasks);
-};
-saveData();
-
 const generateTasks = () => {
-  for (let i = 0; i < tasks.length; i += 1) {
+  tasks.forEach((task) => {
     const listItems = document.createElement('div');
     const leftItems = document.createElement('ul');
     const liTextAndIcons = document.createElement('li');
     const squareSpan = document.createElement('span');
-    const squareIcon = document.createElement('i');
-    // squareIcon.addEventListener('click', () => {
-    //   tasks[i].completed = !tasks[i].completed;
-    //   return true;
-    // });
-    const checkIcon = document.createElement('i');
-    // checkIcon.addEventListener('click', () => {
-    //   tasks[i].completed = !tasks[i].completed;
-    //   console.log(tasks[i].completed);
-    // });
+    const squareIcon = document.createElement('input');
+    squareIcon.type = 'checkbox';
+    // squareIcon.checked = tasks[i].completed;
     const listText = document.createElement('p');
     const threeDotIcon = document.createElement('i');
 
@@ -76,57 +74,33 @@ const generateTasks = () => {
     liTextAndIcons.appendChild(squareSpan);
     liTextAndIcons.appendChild(listText);
     squareSpan.appendChild(squareIcon);
-    squareSpan.appendChild(checkIcon);
 
     listItems.className = 'list-items';
     leftItems.className = 'fa-ul left-items';
     liTextAndIcons.className = 'li-text-and-icons';
     squareSpan.className = 'fa-li square-span';
-    squareIcon.className = 'far fa-square square-icon';
-    checkIcon.className = 'fas fa-check hidden';
-    listText.className = 'list-text';
+    // listText.className = 'list-text';
+    squareIcon.className = 'checkbox';
     threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
 
     document.querySelector('.box').appendChild(listItems);
-    listText.innerText = tasks[i].description;
-    orderTasks();
+    listText.innerText = task.description;
 
     // start complete js file //
 
-    squareIcon.addEventListener('click', () => {
-      tasks[i].completed = !tasks[i].completed;
-      squareIcon.style.display = 'none';
-      listText.style.textDecoration = 'line-through';
-      listText.style.color = 'gray';
-      checkIcon.style.display = 'flex';
-      saveData();
-      // getData();
+    if (task.completed === true) {
+      listText.classList.add('list-text');
+      squareIcon.checked = true;
+    } else {
+      listText.classList.remove('list-text');
+      squareIcon.checked = false;
+    }
+   
+    squareIcon.addEventListener('change', (event) => {
+      updateCompleted(event, task, listText);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
     });
-
-    checkIcon.addEventListener('click', () => {
-      tasks[i].completed = !tasks[i].completed;
-      checkIcon.style.display = 'none';
-      listText.style.textDecoration = 'none';
-      listText.style.color = 'black';
-      squareIcon.style.display = 'block';
-      saveData();
-      // getData();
-    });
-  }
+  });
 };
+orderTasks();
 generateTasks();
-completedTask();
-
-const getData = () => {
-  if (localStorage.getItem('tasks') !== null) {
-    // tasks[i].completed = !tasks[i].completed;
-    const retrievedTasks = localStorage.getItem('tasks');
-    // const convertedTasks =
-    JSON.parse(retrievedTasks);
-    // tasks = convertedTasks;
-    generateTasks();
-  } else {
-    generateTasks();
-  }
-};
-getData();
