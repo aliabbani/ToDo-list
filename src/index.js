@@ -39,7 +39,7 @@ const generateTasks = () => {
     const squareIcon = document.createElement('input');
     squareIcon.type = 'checkbox';
     // squareIcon.checked = tasks[i].completed;
-    const listText = document.createElement('p');
+    const listText = document.createElement('input');
     listText.type = 'text';
     const threeDotIcon = document.createElement('i');
 
@@ -55,7 +55,13 @@ const generateTasks = () => {
     threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
 
     document.querySelector('.box').appendChild(div1);
-    listText.innerText = task.description;
+    listText.value = task.description;
+    // add the edit function
+    listText.addEventListener('keyup', () => {
+      task.description = listText.value;
+      // console.log(task.description);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
 
     // start complete js file //
 
@@ -99,7 +105,7 @@ const generateOneTask = (task) => {
   const div2 = document.createElement('div');
   const squareIcon = document.createElement('input');
   squareIcon.type = 'checkbox';
-  const listText = document.createElement('p');
+  const listText = document.createElement('input');
   listText.type = 'text';
   const threeDotIcon = document.createElement('i');
   div1.appendChild(div2);
@@ -113,7 +119,7 @@ const generateOneTask = (task) => {
   squareIcon.className = 'checkbox';
   threeDotIcon.className = 'fas fa-ellipsis-v three-dot-icon';
   document.querySelector('.box').appendChild(div1);
-  listText.innerText = task.description;
+  listText.value = task.description;
 
   if (task.completed === true) {
     listText.classList.add('list-text');
@@ -125,6 +131,14 @@ const generateOneTask = (task) => {
   squareIcon.addEventListener('change', (event) => {
     updateCompleted(event, task, listText);
     localStorage.setItem('tasks', JSON.stringify(tasks));
+  });
+
+  const deleteIcon = document.createElement('i');
+  deleteIcon.className = 'fas fa-trash';
+
+  listText.addEventListener('click', () => {
+    threeDotIcon.replaceWith(deleteIcon);
+    // localStorage.setItem('tasks', JSON.stringify(tasks));
   });
 };
 const addIcon = document.querySelector('.add-here');
