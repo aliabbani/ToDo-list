@@ -56,7 +56,7 @@ const generateTasks = () => {
     document.querySelector('.box').appendChild(div1);
     listText.value = task.description;
 
-    // add the edit function
+    // add edit function
     const deleteIcon = document.createElement('i');
     deleteIcon.className = 'fas fa-trash';
     listText.addEventListener('keyup', () => {
