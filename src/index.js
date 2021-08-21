@@ -2,9 +2,7 @@
 import _, { indexOf, remove } from 'lodash';
 import './style.css';
 import updateCompleted from './complete.js';
-import {
-  updatedIndex,
-} from './addRemove.js';
+import updatedIndex from './addRemove.js';
 
 let tasks = [];
 
