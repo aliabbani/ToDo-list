@@ -32,9 +32,13 @@ const orderTasks = () => {
   }
 };
 
-// const removeTa = () => {
-//   tasks.splice(tasks.indexOf(tasks), 1);
-// };
+const updatedIndex = () => {
+  tasks = JSON.parse(localStorage.getItem('tasks'));
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+};
 
 const generateTasks = () => {
   tasks.forEach((task) => {
@@ -71,11 +75,16 @@ const generateTasks = () => {
       localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
-    deleteIcon.addEventListener('click', () => {
-      const id = task.index;
-      tasks.splice(id - 1, 1);
+    deleteIcon.addEventListener('click', (event) => {
+      tasks = JSON.parse(localStorage.getItem('tasks'));
+      const id = task.index - 1;
+      // tasks.splice(id - 1, 1);
+      tasks = tasks.filter((task, ind) => ind !== id);
+      console.log(tasks);
       // tasks.pop(task);
       localStorage.setItem('tasks', JSON.stringify(tasks));
+      updatedIndex();
+      event.target.parentNode.remove();
     });
 
     // Clear all completed
@@ -88,6 +97,7 @@ const generateTasks = () => {
     const clear = document.querySelector('.complete-text');
     clear.addEventListener('click', () => {
       clearSelected(tasks);
+      updatedIndex();
     });
 
     if (task.completed === true) {
@@ -146,6 +156,27 @@ const generateOneTask = (task) => {
   document.querySelector('.box').appendChild(div1);
   listText.value = task.description;
 
+  const deleteIcon = document.createElement('i');
+  deleteIcon.className = 'fas fa-trash';
+  listText.addEventListener('keyup', () => {
+    task.description = listText.value;
+    threeDotIcon.replaceWith(deleteIcon);
+    // console.log(task.description);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  });
+
+  deleteIcon.addEventListener('click', (event) => {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+    const id = task.index - 1;
+    // tasks.splice(id - 1, 1);
+    tasks = tasks.filter((task, ind) => ind !== id);
+    console.log(tasks);
+    // tasks.pop(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    updatedIndex();
+    event.target.parentNode.remove();
+  });
+
   if (task.completed === true) {
     listText.classList.add('list-text');
     squareIcon.checked = true;
@@ -158,6 +189,7 @@ const generateOneTask = (task) => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   });
 };
+
 const addIcon = document.querySelector('.add-here');
 addIcon.addEventListener('click', () => {
   const getTask = addNewTask();
