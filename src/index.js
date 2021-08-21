@@ -87,8 +87,6 @@ const generateTasks = () => {
     };
     const clear = document.querySelector('.complete-text');
     clear.addEventListener('click', () => {
-      clear.style.color = 'red';
-      console.log('hello ali');
       clearSelected(tasks);
     });
 
@@ -162,7 +160,6 @@ const generateOneTask = (task) => {
 };
 const addIcon = document.querySelector('.add-here');
 addIcon.addEventListener('click', () => {
-  addIcon.style.color = 'blue';
   const getTask = addNewTask();
   // localStorage.setItem('tasks', JSON.stringify(tasks));
   generateOneTask(getTask);

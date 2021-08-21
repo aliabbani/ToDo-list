@@ -1,6 +1,11 @@
 body {
   background-color: #f4f4f4;
   font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hidden {
@@ -58,7 +63,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid black;
   align-items: baseline;
   padding: 0.5vh 1vw;
 }
@@ -66,6 +71,7 @@ body {
 .input-add {
   border: none;
   outline: none;
+  width: 100%;
   padding: 2vh 0;
 }
 
@@ -111,7 +117,8 @@ body {
 .list-text1 {
   border: none;
   outline: none;
-  padding: 2vh 0;
+  width: 55vw;
+  padding: 2vh 1vw;
   font-size: 15px;
 }
 
@@ -121,4 +128,25 @@ body {
 
 .add-here {
   color: gray;
+}
+
+.three-dot-icon {
+  color: #767678;
+}
+
+.fa-trash {
+  color: #6b6b6b;
+}
+
+.copyright {
+  background-color: #0078d7;
+  color: white;
+  padding: 3vh 2vw;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .list-text1 {
+    width: 73vw;
+  }
 }
