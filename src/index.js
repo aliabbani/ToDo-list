@@ -78,6 +78,20 @@ const generateTasks = () => {
       localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
+    // Clear all completed
+    const clearSelected = (tasks) => {
+      tasks = JSON.parse(localStorage.getItem('tasks'));
+      tasks = tasks.filter((task) => !task.completed);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      return true;
+    };
+    const clear = document.querySelector('.complete-text');
+    clear.addEventListener('click', () => {
+      clear.style.color = 'red';
+      console.log('hello ali');
+      clearSelected(tasks);
+    });
+
     if (task.completed === true) {
       listText.classList.add('list-text');
       squareIcon.checked = true;
