@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://priceless-visvesvaraya-6c31fb.netlify.app)
+[Live Demo Link](https://wonderful-shirley-ed9fdc.netlify.app)
 
 
 ## Getting Started
