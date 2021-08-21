@@ -61,8 +61,15 @@ const generateTasks = () => {
     deleteIcon.className = 'fas fa-trash';
     listText.addEventListener('keyup', () => {
       task.description = listText.value;
-      threeDotIcon.replaceWith(deleteIcon);
       localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
+    listText.addEventListener('click', () => {
+      threeDotIcon.replaceWith(deleteIcon);
+    });
+    listText.addEventListener('blur', () => {
+      setTimeout(() => {
+        deleteIcon.replaceWith(threeDotIcon);
+      }, 300);
     });
 
     deleteIcon.addEventListener('click', (event) => {
@@ -147,8 +154,15 @@ const generateOneTask = (task) => {
   deleteIcon.className = 'fas fa-trash';
   listText.addEventListener('keyup', () => {
     task.description = listText.value;
-    threeDotIcon.replaceWith(deleteIcon);
     localStorage.setItem('tasks', JSON.stringify(tasks));
+  });
+  listText.addEventListener('click', () => {
+    threeDotIcon.replaceWith(deleteIcon);
+  });
+  listText.addEventListener('blur', () => {
+    setTimeout(() => {
+      deleteIcon.replaceWith(threeDotIcon);
+    }, 300);
   });
 
   deleteIcon.addEventListener('click', (event) => {
