@@ -164,3 +164,10 @@ addIcon.addEventListener('click', () => {
   // localStorage.setItem('tasks', JSON.stringify(tasks));
   generateOneTask(getTask);
 });
+document.querySelector('.input-add').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    const getTask = addNewTask();
+    // localStorage.setItem('tasks', JSON.stringify(tasks));
+    generateOneTask(getTask);
+  }
+});
