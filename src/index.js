@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import _ from 'lodash';
+import _, { indexOf, remove } from 'lodash';
 import './style.css';
 import updateCompleted from './complete.js';
 // console.log(completedTask);
@@ -32,6 +32,10 @@ const orderTasks = () => {
   }
 };
 
+// const removeTa = () => {
+//   tasks.splice(tasks.indexOf(tasks), 1);
+// };
+
 const generateTasks = () => {
   tasks.forEach((task) => {
     const div1 = document.createElement('div');
@@ -56,14 +60,23 @@ const generateTasks = () => {
 
     document.querySelector('.box').appendChild(div1);
     listText.value = task.description;
+
     // add the edit function
+    const deleteIcon = document.createElement('i');
+    deleteIcon.className = 'fas fa-trash';
     listText.addEventListener('keyup', () => {
       task.description = listText.value;
+      threeDotIcon.replaceWith(deleteIcon);
       // console.log(task.description);
       localStorage.setItem('tasks', JSON.stringify(tasks));
     });
 
-    // start complete js file //
+    deleteIcon.addEventListener('click', () => {
+      const id = task.index;
+      tasks.splice(id - 1, 1);
+      // tasks.pop(task);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
 
     if (task.completed === true) {
       listText.classList.add('list-text');
@@ -132,19 +145,11 @@ const generateOneTask = (task) => {
     updateCompleted(event, task, listText);
     localStorage.setItem('tasks', JSON.stringify(tasks));
   });
-
-  const deleteIcon = document.createElement('i');
-  deleteIcon.className = 'fas fa-trash';
-
-  listText.addEventListener('click', () => {
-    threeDotIcon.replaceWith(deleteIcon);
-    // localStorage.setItem('tasks', JSON.stringify(tasks));
-  });
 };
 const addIcon = document.querySelector('.add-here');
 addIcon.addEventListener('click', () => {
   addIcon.style.color = 'blue';
   const getTask = addNewTask();
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  // localStorage.setItem('tasks', JSON.stringify(tasks));
   generateOneTask(getTask);
 });
