@@ -8,4 +8,15 @@ const updatedIndex = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-export default updatedIndex;
+// clear function
+const clearSelected = (tasks) => {
+  tasks = JSON.parse(localStorage.getItem('tasks'));
+  tasks = tasks.filter((task) => !task.completed);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  return true;
+};
+
+export {
+  updatedIndex,
+  clearSelected,
+};

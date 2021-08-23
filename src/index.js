@@ -2,7 +2,10 @@
 import _, { indexOf, remove } from 'lodash';
 import './style.css';
 import updateCompleted from './complete.js';
-import updatedIndex from './addremove.js';
+import {
+  updatedIndex,
+  clearSelected,
+} from './addremove.js';
 
 let tasks = [];
 
@@ -82,12 +85,6 @@ const generateTasks = () => {
     });
 
     // Clear all completed
-    const clearSelected = (tasks) => {
-      tasks = JSON.parse(localStorage.getItem('tasks'));
-      tasks = tasks.filter((task) => !task.completed);
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      return true;
-    };
     const clear = document.querySelector('.complete-text');
     clear.addEventListener('click', () => {
       clearSelected(tasks);
@@ -175,12 +172,6 @@ const generateOneTask = (task) => {
   });
 
   // Clear all completed
-  const clearSelected = (tasks) => {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-    tasks = tasks.filter((task) => !task.completed);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    return true;
-  };
   const clear = document.querySelector('.complete-text');
   clear.addEventListener('click', () => {
     clearSelected(tasks);
