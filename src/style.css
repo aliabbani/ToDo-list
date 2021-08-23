@@ -8,10 +8,6 @@ body {
   justify-content: space-between;
 }
 
-.hidden {
-  display: none;
-}
-
 .nav-bar {
   background-color: #0078d7;
   display: flex;
@@ -74,8 +70,6 @@ body {
   width: 100%;
   padding: 2vh 0;
 }
-
-/****************************************************************************************** */
 
 .list-items {
   display: flex;
