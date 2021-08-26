@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://priceless-ptolemy-3fa472.netlify.app)
+[Live Demo Link](https://aliabbani.github.io/ToDo-list/)
 
 
 ## Getting Started
